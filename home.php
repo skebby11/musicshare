@@ -107,6 +107,34 @@ var max_number =20;
 	}
 </script>
 
+<script type="text/javascript">
+
+$(function() {
+        var scntDiv = $('#p_scents');
+        var i = $('#p_scents p').size() + 1;
+        
+        $('#addScnt').live('click', function() {
+			if (i < 11) {
+                $('<p><label for="p_scnts"><input type="text" id="p_scnt" size="20" name="p_scnt_' + i +'" value="" placeholder="Indirizzo email" /></label> <a href="#" id="remScnt">X</a></p>').appendTo(scntDiv);
+                i++;
+                return false;
+			} else {
+				alert('Puoi inviare un massimo di 10 email.');
+				return false;
+			}
+        });
+        
+        $('#remScnt').live('click', function() { 
+                if( i > 2 ) {
+                        $(this).parents('p').remove();
+                        i--;
+                }
+                return false;
+        });
+});
+
+	
+</script>
 
 </head>
 
@@ -115,15 +143,15 @@ var max_number =20;
 
 <div class="menu">
 	<ul>
-	 <li><a href="index.php" class="menu">Home</a></li>
+	 <li><a class=" menu active" href="home.php">Home</a></li>
 	 <li><a href="myfiles.php" class="menu">My files</a></li>
-	 <li><a href="settings.php" class="menu">Settings</a></li>
+	 <!--<li><a href="settings.php" class="menu">Settings</a></li>-->
 	<!-- logged in user information -->
 	<?php  if (isset($_SESSION['user'])) : ?>
-		<li class="right"><strong>Ciao, <?php echo $_SESSION['user']['username']; ?></strong><br><small> <a href="index.php?logout='1'" style="color: red;">logout</a> </small></li>
+		<li class="right"><strong>Ciao, <?php echo $_SESSION['user']['username']; ?></strong><br><small> <a href="home.php?logout='1'" style="color: red;">logout</a> </small></li>
 	<?php else : ?>
 	<li style="float:right"><a href="login.php">Login</a></li>
-	<li style="float:right"><a class="active" href="register.php">Signup</a></li>
+	<li style="float:right"><a href="register.php">Signup</a></li>
 	<?php endif ?>
 	</ul>
 	</div>
@@ -136,16 +164,41 @@ var max_number =20;
 	<p class="title"><z class="m">MUSIC</i><z class="s">SHARE</i></b></p>
 
 <!-- notification message -->
-		<?php if (isset($_SESSION['success'])) : ?>
-			<div class="error success" >
-				<h3> <i class="fa fa-check"></i>
-					<?php 
-						echo $_SESSION['success']; 
-						unset($_SESSION['success']);
-					?>
-				</h3>
-			</div>
-		<?php endif ?>
+<?php if (isset($_SESSION['success'])) : ?>
+	<div class="error success" >
+		<h3> <i class="fa fa-check"></i>
+			<?php 
+				echo $_SESSION['success']; 
+				unset($_SESSION['success']);
+			?>
+		</h3>
+	</div>
+<?php endif ?>
+
+
+<?php if(!empty($_GET['uploaded'])) : ?>
+
+<?php $upids = $_GET['uploaded']; ?>
+
+<div class="mailshare">
+	<form action="sendmail.php" method="post">
+		<h2>Condividi i tuoi file per mail</h2>
+		<p>Inserisci gli indirezzi e-mail delle persone a cui vuoi inviare il tuo file.</p>
+
+		<div id="p_scents">
+			<p>
+				<label for="p_scnts"><input type="text" id="p_scnt" size="20" name="p_scnt" value="" placeholder="Indirizzo email" /></label>
+			</p>
+		</div>
+		<a href="#" id="addScnt"><button>+ mail</button></a> <br>
+
+		
+		<input type="submit" value="Invia" name="sendmail" class="mailbtn">
+	</form>
+</div>
+
+<?php endif ?>
+
 	
 <div class="form-container">
 	<form enctype="multipart/form-data" action="upload.php" method="post" name="upload-form" id="upload-form">

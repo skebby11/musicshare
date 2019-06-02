@@ -27,10 +27,14 @@
 		}
 	}
 
-	$query = "SELECT username FROM ms_users WHERE ID = $owner";
+	$query = "SELECT username, idunique FROM ms_users WHERE ID = $owner";
 	$result = mysqli_query($db, $query);
-	$uploader = mysqli_fetch_array($result)['username'];
-	$unique = mysqli_fetch_array($result)['idunique'];
+	while($row = mysqli_fetch_array($result)){
+		$uploader = $row['username'];
+		$unique = $row['idunique'];
+		
+	}
+echo $query;
 ?>
 
 
@@ -38,7 +42,7 @@
 <html>
 <head>
 <meta http-equiv="content-type" content="text/html; charset=utf-8" />
-<title>I tuoi files // MS</title>
+<title><?php echo $origname; ?> // MS</title>
 <meta name="description" content="" />
 <meta http-equiv="language" content="it" />
 <meta name="language" content="it" />
@@ -55,15 +59,15 @@
 
 <div class="menu">
 	<ul>
-	 <li><a href="index.php" class="menu">Home</a></li>
+	 <li><a href="home.php" class="menu">Home</a></li>
 	 <li><a href="myfiles.php" class="menu">My files</a></li>
 	 <!--<li><a href="settings.php" class="menu">Settings</a></li>-->
 	<!-- logged in user information -->
 	<?php  if (isset($_SESSION['user'])) : ?>
-		<li class="right"><strong>Ciao, <?php echo $_SESSION['user']['username']; ?></strong><br><small> <a href="index.php?logout='1'" style="color: red;">logout</a> </small></li>
+		<li class="right"><strong>Ciao, <?php echo $_SESSION['user']['username']; ?></strong><br><small> <a href="home.php?logout='1'" style="color: red;">logout</a> </small></li>
 	<?php else : ?>
 	<li style="float:right"><a href="login.php">Login</a></li>
-	<li style="float:right"><a class="active" href="register.php">Signup</a></li>
+	<li style="float:right"><a href="register.php">Signup</a></li>
 	<?php endif ?>
 	</ul>
 	</div>
@@ -89,10 +93,11 @@
 <div class="form-container">		
 		
 	<?php
-	echo "<div class='dwfile'><a href='uploads/$unique/$filename'>$origname</a><br>
-	Grandezza $size<br>
-	Caricato il $date<br>
-	da $uploader</div>"; ?>
+	echo "<div class='dwfile'><a href='uploads/$unique/$filename'><b>$origname</b></a><br><br>
+	Grandezza <i>$size</i><br>
+	Caricato il <i>$date</i><br>
+	da <i>$uploader</i><br><br>
+	<a href='uploads/$unique/$filename'><input type='button' class='dwbtn' value='Scarica'></a></div>"; ?>
 	
 </div>
 <div class="credits">

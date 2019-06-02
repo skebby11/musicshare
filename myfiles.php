@@ -39,15 +39,15 @@
 
 <div class="menu">
 	<ul>
-	 <li><a href="index.php" class="menu">Home</a></li>
-	 <li><a href="myfiles.php" class="menu">My files</a></li>
+	 <li><a href="home.php" class="menu">Home</a></li>
+	 <li><a class=" menu active" href="myfiles.php">My files</a></li>
 	 <!--<li><a href="settings.php" class="menu">Settings</a></li>-->
 	<!-- logged in user information -->
 	<?php  if (isset($_SESSION['user'])) : ?>
-		<li class="right"><strong>Ciao, <?php echo $_SESSION['user']['username']; ?></strong><br><small> <a href="index.php?logout='1'" style="color: red;">logout</a> </small></li>
+		<li class="right"><strong>Ciao, <?php echo $_SESSION['user']['username']; ?></strong><br><small> <a href="home.php?logout='1'" style="color: red;">logout</a> </small></li>
 	<?php else : ?>
 	<li style="float:right"><a href="login.php">Login</a></li>
-	<li style="float:right"><a class="active" href="register.php">Signup</a></li>
+	<li style="float:right"><a href="register.php">Signup</a></li>
 	<?php endif ?>
 	</ul>
 	</div>
@@ -77,6 +77,7 @@
 	$query = "SELECT * FROM uploads WHERE owner =" . $idutente;
 	$uploadsresult = mysqli_query($db, $query);
 	while($row = mysqli_fetch_array($uploadsresult)){
+		$fileid = $row['id'];
 		$filename = $row['filename'];
 		$size = $row['size'];
 		$ext = $row['ext'];
@@ -97,7 +98,7 @@
 		}
 		
 		
-	 echo "<div class='myfiles'><a href='uploads/$unique/$filename'>$origname</a><br>
+	 echo "<div class='myfiles'><a href='download.php?fileid=$fileid'>$origname</a><br>
 	Grandezza $size<br>
 	Caricato il $date</div>";}?>
 	
