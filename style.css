@@ -83,7 +83,7 @@ li a.active {
 
 /*body*/
 .header {
-	width: 100%;
+	width: 90%;
 	padding-left: 10px;
 	padding-right: 10px;
 }
@@ -123,13 +123,40 @@ z.s {
 	border: 0px solid #fff;
 	text-align: center;
 }
+.credits a{
+	color: #fff;
+	text-decoration: underline;
+}
 .mailshare{
 	margin: auto;
-	width: 300px;
+	width: 500px;
 	border: 3px solid #fff;
 	background-color: #333;
 	padding: 10px;
 	text-align: center;
+}
+.mailshare h2{
+	color: #e0ba12;
+	text-transform: uppercase;
+	padding: 10px 0;
+}
+.mailshare p{
+	color: #fff;
+	margin-bottom: 10px;
+}
+.mailshare input.mailbtn{
+	padding: 6px 12px;
+	font-size: 100%;
+	font-weight: normal;
+}
+.mailshare .addmail{
+	color: #fff;
+	text-decoration: none;
+}
+a .rmv{
+	display: inline;
+	width: 20px;
+	vertical-align: middle;
 }
 
 /*uploader*/
@@ -248,8 +275,9 @@ padding:12px;
   .form-container {
 	  width: 100%;
 	  /*border: 3px solid green;*/
-	  padding: 20px 10px 40px 10px;
+	  /*padding: 20px 10px 40px 10px;*/
 	  text-align: center;
+	  padding: 20px 0;
 	  margin: 0 0;
 	}
 	p.title {
@@ -257,4 +285,12 @@ padding:12px;
 		font-size: 50px;
 		margin: 0 0;
 	}
+.mailshare{
+	margin: auto;
+	width: 80%;
+	border: 3px solid #fff;
+	background-color: #333;
+	padding: 10px;
+	text-align: center;
+}
 }

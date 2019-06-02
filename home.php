@@ -115,7 +115,7 @@ $(function() {
         
         $('#addScnt').live('click', function() {
 			if (i < 11) {
-                $('<p><label for="p_scnts"><input type="text" id="p_scnt" size="20" name="p_scnt_' + i +'" value="" placeholder="Indirizzo email" /></label> <a href="#" id="remScnt">X</a></p>').appendTo(scntDiv);
+                $('<p><label for="p_scnts"><input type="email" id="p_scnt" size="20" name="p_scnt_' + i +'" value="" placeholder="Indirizzo email" /></label> <a href="#" id="remScnt"><img src="images/remove.png" class="rmv" title="Rimuovi email"></a></p>').appendTo(scntDiv);
                 i++;
                 return false;
 			} else {
@@ -158,7 +158,7 @@ $(function() {
 </div>
 	
 <div class="header">
-	<img src="">
+	<!--<img src="">-->
 </div>
 	
 	<p class="title"><z class="m">MUSIC</i><z class="s">SHARE</i></b></p>
@@ -187,10 +187,10 @@ $(function() {
 
 		<div id="p_scents">
 			<p>
-				<label for="p_scnts"><input type="text" id="p_scnt" size="20" name="p_scnt" value="" placeholder="Indirizzo email" /></label>
+				<label for="p_scnts"><input type="email" id="p_scnt" size="20" name="p_scnt" value="" placeholder="Indirizzo email" /></label>
 			</p>
 		</div>
-		<a href="#" id="addScnt"><button>+ mail</button></a> <br>
+		<a href="#" id="addScnt" class="addmail"> <b>+ mail</b></a> <br>
 
 		
 		<input type="submit" value="Invia" name="sendmail" class="mailbtn">
