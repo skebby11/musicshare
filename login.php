@@ -1,75 +1,79 @@
-<?php 
+<?php
+	include('functions.php');
 
-include('functions.php');
-if (isLoggedIn()) {
+	if (isLoggedIn()) {
 		header('location: home.php');
 	}
+
+	$up_id = uniqid(); 
 ?>
+
 
 <!DOCTYPE html>
 <html>
 <head>
-	<title>Login</title>
-	<!--<link rel="stylesheet" type="text/css" href="assets/css/style.css?v1.1.51">-->
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+<title>Login // MS</title>
+<meta name="description" content="" />
+<meta http-equiv="language" content="it" />
+<meta name="language" content="it" />
+<!--Progress Bar and iframe Styling-->
+<link href="style.css" rel="stylesheet" type="text/css" />
+<link href="forms.css" rel="stylesheet" type="text/css" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 
 </head>
+
 <body>
-	<div class="header">
-		<img src="" width="80%">	
+
+
+<div class="menu">
+	<ul>
+	 <li><a class=" menu active" href="home.php">Home</a></li>
+	 <li><a href="myfiles.php" class="menu">My files</a></li>
+	 <!--<li><a href="settings.php" class="menu">Settings</a></li>-->
+	<!-- logged in user information -->
+	<?php  if (isset($_SESSION['user'])) : ?>
+		<li class="right"><strong>Ciao, <?php echo $_SESSION['user']['username']; ?></strong><br><small> <a href="home.php?logout='1'" style="color: red;">logout</a> </small></li>
+	<?php else : ?>
+	<li style="float:right"><a href="login.php">Login</a></li>
+	<li style="float:right"><a href="register.php">Signup</a></li>
+	<?php endif ?>
+	</ul>
 	</div>
-	<div class="menu">
-		<ul>
- 		 <li><a href="index.php">Home</a></li>
-  		 <li><a href="myfiles.php">My files</a></li>
-  		 <li><a href="settings.php">Settings</a></li>
-		</ul>
-		<!-- logged in user information -->
-		<div class="profile_info" align="right"> 
-
-			<div>
-				<?php  if (isset($_SESSION['user'])) : ?>
-					<strong><?php echo $_SESSION['user']['username']; ?></strong>
-
-					<small>
-						<a href="index.php?logout='1'" style="color: red;">logout</a>
-					</small>
-
-				<?php else : ?>
-				<ul class="login">
- 		 		<li class="login"><a href="login.php">Login</a></li>
-  		 		<li class="login"><a class="active" href="register.php">Signup</a></li>
-				</ul>
-
-				<?php endif ?>
-			</div>
-		</div>
-	</div>
+</div>
 	
-	<form method="post" action="login.php">
+<div class="header">
+	<!--<img src="">-->
+</div>
+	
+	<p class="title"><z class="m">LOG</i><z class="s">IN</i></b></p>
 
-		<?php echo display_error(); ?>
+<!-- notification message -->
+<?php if (isset($_SESSION['success'])) : ?>
+	<div class="error success" >
+		<h3> <i class="fa fa-check"></i>
+			<?php 
+				echo $_SESSION['success']; 
+				unset($_SESSION['success']);
+			?>
+		</h3>
+	</div>
+<?php endif ?>
 
-		<div class="input-group">
-			<label>Username</label>
-			<input type="text" name="username" >
-		</div>
-		<div class="input-group">
-			<label>Password</label>
-			<input type="password" name="password">
-		</div>
-
-			<input type="text" name="goto" style="visibility: hidden" value="<?php echo $goto; ?>">
-
-		<div class="input-group">
-			<button type="submit" class="btn blue" name="login_btn">Login</button>
-		</div>
-		
-		<p>
-			Not yet a member? <a href="register.php">Sign up</a>
-		</p>
-	</form>
-
-
+	
+<div class="form-container">
+	<form enctype="multipart/form-data" action="login.php" method="post">
+	Username <br> <input type="text" name="username"><br><br>
+	Password <br> <input type="password" name="password"><br>
+	<input type="submit" value="Login" name="login_btn"> <br><br>
+	Oppure <a href="register.php">registrati</a>
+</div>
+<div class="credits">
+	<p>&copy <?php echo $year; ?> | Creato da <a href="https://www.sebastianoriva.it/" target="_blank" style="color: #FFFFFF">Sebastiano Riva</a></p>
+</div>
 </body>
-</html>
+</html> 
+
+
