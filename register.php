@@ -1,78 +1,81 @@
-<?php include('functions.php');
-	
-if (isLoggedIn()) {
+<?php
+	include('functions.php');
+
+	if (isLoggedIn()) {
 		header('location: home.php');
 	}
+
+	$up_id = uniqid(); 
 ?>
+
+
 <!DOCTYPE html>
 <html>
 <head>
-	<title>Registration</title>
-	<link rel="stylesheet" type="text/css" href="style.css">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+<title>Register // MS</title>
+<meta name="description" content="" />
+<meta http-equiv="language" content="it" />
+<meta name="language" content="it" />
+<!--Progress Bar and iframe Styling-->
+<link href="style.css" rel="stylesheet" type="text/css" />
+<link href="forms.css" rel="stylesheet" type="text/css" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+
 </head>
+
 <body>
-	<div class="header">
-		<img src="" width="80%">	
+
+
+<div class="menu">
+	<ul>
+	 <li><a class="menu" href="home.php">Home</a></li>
+	 <li><a href="myfiles.php" class="menu">My files</a></li>
+	 <!--<li><a href="settings.php" class="menu">Settings</a></li>-->
+	<!-- logged in user information -->
+	<?php  if (isset($_SESSION['user'])) : ?>
+		<li class="right"><strong>Ciao, <?php echo $_SESSION['user']['username']; ?></strong><br><small> <a href="home.php?logout='1'" style="color: red;">logout</a> </small></li>
+	<?php else : ?>
+	<li style="float:right"><a href="login.php" class="menu">Login</a></li>
+	<li style="float:right"><a href="register.php" class="menu active">Signup</a></li>
+	<?php endif ?>
+	</ul>
 	</div>
-	<div class="menu">
-		<ul>
- 		 <li><a href="index.php">Home</a></li>
-  		 <li><a href="myfiles.php">My files</a></li>
-  		 <li><a href="settings.php">Settings</a></li>
-		</ul>
-		<!-- logged in user information -->
-		<div class="profile_info" align="right"> 
+</div>
+	
+<div class="header">
+	<!--<img src="">-->
+</div>
+	
+	<p class="title"><z class="m">REGIS</i><z class="s">TER</i></b></p>
 
-			<div>
-				<?php  if (isset($_SESSION['user'])) : ?>
-					<strong><?php echo $_SESSION['user']['username']; ?></strong>
-
-					<small>
-						<a href="index.php?logout='1'" style="color: red;">logout</a>
-					</small>
-
-				<?php else : ?>
-				<ul class="login">
- 		 		<li class="login"><a href="login.php">Login</a></li>
-  		 		<li class="login"><a class="active" href="register.php">Signup</a></li>
-				</ul>
-
-				<?php endif ?>
-			</div>
-		</div>
+<!-- notification message -->
+<?php if (isset($_SESSION['success'])) : ?>
+	<div class="error success" >
+		<h3> <i class="fa fa-check"></i>
+			<?php 
+				echo $_SESSION['success']; 
+				unset($_SESSION['success']);
+			?>
+		</h3>
 	</div>
+<?php endif ?>
 	
-	<form method="post" action="register.php">
-
-		<?php echo display_error(); ?>
-	
-		<div class="input-group">
-			<label>Nome</label>
-			<input type="text" name="nome" value="<?php echo $nome; ?>">
-		</div>
-		<div class="input-group">
-			<label>Username</label>
-			<input type="text" name="username" value="<?php echo $username; ?>">
-		</div>
-		<div class="input-group">
-			<label>Email</label>
-			<input type="email" name="email" value="<?php echo $email; ?>">
-		</div>
-		<div class="input-group">
-			<label>Password</label>
-			<input type="password" name="password_1">
-		</div>
-		<div class="input-group">
-			<label>Confirm password</label>
-			<input type="password" name="password_2">
-		</div>
-		<div class="input-group">
-			<button type="submit" class="btn blue" name="register_btn">Register</button>
-		</div>
-		<p>
-			Already a member? <a href="login.php">Sign in</a>
-		</p>
-	</form>
+<div class="form-container">
+	<form enctype="multipart/form-data" action="register.php" method="post">
+	Nome <br> <input type="text" name="name"><br><br>
+	Username <br> <input type="text" name="username"><br><br>
+	Email <br> <input type="email" name="email"><br><br>
+	Password <br> <input type="password" name="password_1"><br><br>
+	Psw di nuovo <br> <input type="password" name="password_2"><br><br>
+	<input type="submit" value="Register" name="register_btn"> <br><br>
+	Oppure <a href="login.php">login</a>
+</div>
+<div class="credits">
+	<p>&copy <?php echo $year; ?> | Creato da <a href="https://www.sebastianoriva.it/" target="_blank" style="color: #FFFFFF">Sebastiano Riva</a></p>
+</div>
 </body>
-</html>
+</html> 
+
+
