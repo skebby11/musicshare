@@ -2,7 +2,7 @@
 	session_start();
 
 	// connect to universal database
-	$db = mysqli_connect('localhost', 'root', '', 'musicshare');
+	$db = mysqli_connect('localhost', 'sebastianoriva', '', 'my_sebastianoriva');
 
 	//declaring global vars
 	$time = date("d/m/Y - H:i:s");

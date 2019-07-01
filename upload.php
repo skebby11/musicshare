@@ -22,12 +22,12 @@ function uploadOK(){
 					//array of uploaded files id
 					foreach($rows as list($a))
 					{
-						$upids .= $a . "&";
+						$upids .= $a . ",";
 						
 					}
 	
-					//remove last &
-					$upids = rtrim($upids,'&');			
+					//remove last comma
+					$upids = rtrim($upids,',');			
 					
 					//redirect to home page with uploaded IDs on link
 					header('location: home.php?uploaded=' . $upids . '');
@@ -74,14 +74,14 @@ function uploadOK(){
 				// destination path - you can choose any file name here (e.g. random)
 				$path = "uploads/". $unique . "/" . $dest_filename; 
 
-				//if(move_uploaded_file($_FILES["item_file"]['tmp_name']["$j"],$path)) { 
+				if(move_uploaded_file($_FILES["item_file"]['tmp_name']["$j"],$path)) { 
 					
 					
 					
 					// db file registration
 								
 					$query = "INSERT INTO uploads (owner, filename, size, ext, date, origname) VALUES ('$idutente', '$dest_filename', '$filesize', '$file_ext', '$time', '$filen')";
-					//mysqli_query($db, $query);
+					mysqli_query($db, $query);
 					
 					
 					$_SESSION['success']  = "File caricati con successo!"; 
@@ -94,7 +94,7 @@ function uploadOK(){
 				{
 					array_push($errors, "Errore nel caricare i file!");
 					header('location: home.php');
-				//}
+				}
 			}	
  
 		} uploadOK();

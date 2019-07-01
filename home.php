@@ -180,8 +180,9 @@ $(function() {
 
 <?php $upids = $_GET['uploaded']; ?>
 
-<div class="mailshare">
-	<form action="sendmail.php" method="post">
+<br><br><div class="mailshare"> 
+	<?php  ?>
+	<form action="sendmail.php?user=<?php echo $_SESSION['user']['id']; ?>&up=<?php echo $upids ;?>" method="post">
 		<h2>Condividi i tuoi file per mail</h2>
 		<p>Inserisci gli indirezzi e-mail delle persone a cui vuoi inviare il tuo file.</p>
 
@@ -218,7 +219,7 @@ $(function() {
 		<!---->
 </div>
 <div class="credits">
-	<p>Creato da Sebastiano Riva</p>
+	<p>&copy <?php echo $year; ?> | Creato da <a href="https://www.sebastianoriva.it/" target="_blank" style="color: #FFFFFF">Sebastiano Riva</a></p>
 </div>
 </body>
 </html> 

@@ -51,11 +51,55 @@ $finarray = implode( $mailArray );
 $finarray = rtrim($finarray,', ');
 	
 	
+$idutente = $_GET['user'];
+	
+$query = "SELECT username FROM ms_users WHERE id=$idutente";
+$result = mysqli_query($db, $query);
+while($row = mysqli_fetch_array($result)){
+		$up_user = $row['username'];
+}
+
+$up = $_GET['up'];
+	
+	
+// use of explode 
+$str_arr = explode (",", $up);  
+	
+$upnumbers = count($str_arr);
+	
+if($upnumbers == 1) {
+	$button = "<a href='https://sebastianoriva.altervista.org/musicshare/download.php?fileid=".$str_arr[0]."'><span style='font-size: 16px; line-height: 32px;'><span style='font-size: 15px; line-height: 30px;'><strong><span style='line-height: 30px; font-size: 15px;'>SCARICA IL MIO FILE</span></strong></span></span></a>";
+} elseif ($upnumbers == 2) {
+	$button = "<a href='https://sebastianoriva.altervista.org/musicshare/download.php?fileid=".$str_arr[0]."'><span style='font-size: 16px; line-height: 32px;'><span style='font-size: 15px; line-height: 30px;'><strong><span style='line-height: 30px; font-size: 15px;'>SCARICA IL PRIMO FILE</span></strong></span></span></a><br>
+	<a href='https://sebastianoriva.altervista.org/musicshare/download.php?fileid=".$str_arr[1]."'><span style='font-size: 16px; line-height: 32px;'><span style='font-size: 15px; line-height: 30px;'><strong><span style='line-height: 30px; font-size: 15px;'>SCARICA IL SECONDO FILE</span></strong></span></span></a>";
+} elseif ($upnumbers == 3) {
+	$button = "<a href='https://sebastianoriva.altervista.org/musicshare/download.php?fileid=".$str_arr[0]."'><span style='font-size: 16px; line-height: 32px;'><span style='font-size: 15px; line-height: 30px;'><strong><span style='line-height: 30px; font-size: 15px;'>SCARICA IL PRIMO FILE</span></strong></span></span></a><br>
+	<a href='https://sebastianoriva.altervista.org/musicshare/download.php?fileid=".$str_arr[1]."'><span style='font-size: 16px; line-height: 32px;'><span style='font-size: 15px; line-height: 30px;'><strong><span style='line-height: 30px; font-size: 15px;'>SCARICA IL SECONDO FILE</span></strong></span></span></a><br>
+	<a href='https://sebastianoriva.altervista.org/musicshare/download.php?fileid=".$str_arr[2]."'><span style='font-size: 16px; line-height: 32px;'><span style='font-size: 15px; line-height: 30px;'><strong><span style='line-height: 30px; font-size: 15px;'>SCARICA IL TERZO FILE</span></strong></span></span></a>";
+} elseif ($upnumbers == 4) {
+	$button = "<a href='https://sebastianoriva.altervista.org/musicshare/download.php?fileid=".$str_arr[0]."'><span style='font-size: 16px; line-height: 32px;'><span style='font-size: 15px; line-height: 30px;'><strong><span style='line-height: 30px; font-size: 15px;'>SCARICA IL PRIMO FILE</span></strong></span></span></a><br>
+	<a href='https://sebastianoriva.altervista.org/musicshare/download.php?fileid=".$str_arr[1]."'><span style='font-size: 16px; line-height: 32px;'><span style='font-size: 15px; line-height: 30px;'><strong><span style='line-height: 30px; font-size: 15px;'>SCARICA IL SECONDO FILE</span></strong></span></span></a><br>
+	<a href='https://sebastianoriva.altervista.org/musicshare/download.php?fileid=".$str_arr[2]."'><span style='font-size: 16px; line-height: 32px;'><span style='font-size: 15px; line-height: 30px;'><strong><span style='line-height: 30px; font-size: 15px;'>SCARICA IL TERZO FILE</span></strong></span></span></a><br>
+	<a href='https://sebastianoriva.altervista.org/musicshare/download.php?fileid=".$str_arr[3]."'><span style='font-size: 16px; line-height: 32px;'><span style='font-size: 15px; line-height: 30px;'><strong><span style='line-height: 30px; font-size: 15px;'>SCARICA IL QUARTO FILE</span></strong></span></span></a>";
+} elseif ($upnumbers == 5) {
+	$button = "<a href='https://sebastianoriva.altervista.org/musicshare/download.php?fileid=".$str_arr[0]."'><span style='font-size: 16px; line-height: 32px;'><span style='font-size: 15px; line-height: 30px;'><strong><span style='line-height: 30px; font-size: 15px;'>SCARICA IL PRIMO FILE</span></strong></span></span></a><br>
+	<a href='https://sebastianoriva.altervista.org/musicshare/download.php?fileid=".$str_arr[1]."'><span style='font-size: 16px; line-height: 32px;'><span style='font-size: 15px; line-height: 30px;'><strong><span style='line-height: 30px; font-size: 15px;'>SCARICA IL SECONDO FILE</span></strong></span></span></a><br>
+	<a href='https://sebastianoriva.altervista.org/musicshare/download.php?fileid=".$str_arr[2]."'><span style='font-size: 16px; line-height: 32px;'><span style='font-size: 15px; line-height: 30px;'><strong><span style='line-height: 30px; font-size: 15px;'>SCARICA IL TERZO FILE</span></strong></span></span></a><br>
+	<a href='https://sebastianoriva.altervista.org/musicshare/download.php?fileid=".$str_arr[3]."'><span style='font-size: 16px; line-height: 32px;'><span style='font-size: 15px; line-height: 30px;'><strong><span style='line-height: 30px; font-size: 15px;'>SCARICA IL MIO FILE</span></strong></span></span></a><br>
+	<a href='https://sebastianoriva.altervista.org/musicshare/download.php?fileid=".$str_arr[4]."'><span style='font-size: 16px; line-height: 32px;'><span style='font-size: 15px; line-height: 30px;'><strong><span style='line-height: 30px; font-size: 15px;'>SCARICA IL QUINTO FILE</span></strong></span></span></a>";
+} elseif ($upnumbers == 6) {
+	$button = "<a href='https://sebastianoriva.altervista.org/musicshare/download.php?fileid=".$str_arr[0]."'><span style='font-size: 16px; line-height: 32px;'><span style='font-size: 15px; line-height: 30px;'><strong><span style='line-height: 30px; font-size: 15px;'>SCARICA IL PRIMO FILE</span></strong></span></span></a><br>
+	<a href='https://sebastianoriva.altervista.org/musicshare/download.php?fileid=".$str_arr[1]."'><span style='font-size: 16px; line-height: 32px;'><span style='font-size: 15px; line-height: 30px;'><strong><span style='line-height: 30px; font-size: 15px;'>SCARICA IL MIO FILE</span></strong></span></span></a><br>
+	<a href='https://sebastianoriva.altervista.org/musicshare/download.php?fileid=".$str_arr[2]."'><span style='font-size: 16px; line-height: 32px;'><span style='font-size: 15px; line-height: 30px;'><strong><span style='line-height: 30px; font-size: 15px;'>SCARICA IL MIO FILE</span></strong></span></span></a><br>
+	<a href='https://sebastianoriva.altervista.org/musicshare/download.php?fileid=".$str_arr[3]."'><span style='font-size: 16px; line-height: 32px;'><span style='font-size: 15px; line-height: 30px;'><strong><span style='line-height: 30px; font-size: 15px;'>SCARICA IL MIO FILE</span></strong></span></span></a><br>
+	<a href='https://sebastianoriva.altervista.org/musicshare/download.php?fileid=".$str_arr[4]."'><span style='font-size: 16px; line-height: 32px;'><span style='font-size: 15px; line-height: 30px;'><strong><span style='line-height: 30px; font-size: 15px;'>SCARICA IL MIO FILE</span></strong></span></span></a><br>
+	<a href='https://sebastianoriva.altervista.org/musicshare/download.php?fileid=".$str_arr[5]."'><span style='font-size: 16px; line-height: 32px;'><span style='font-size: 15px; line-height: 30px;'><strong><span style='line-height: 30px; font-size: 15px;'>SCARICA IL MIO FILE</span></strong></span></span></a>";
+}
 	
 // start email
 	
 $to = $finarray;
-$subject = "Qualcuno ti ha inviato un file!";
+$subject = "$up_user ti ha inviato un file!";
 
 $message = "
 <html xmlns='http://www.w3.org/1999/xhtml' xmlns:o='urn:schemas-microsoft-com:office:office' xmlns:v='urn:schemas-microsoft-com:vml'>
@@ -466,7 +510,7 @@ $message = "
 <!--[if mso]><table width='100%' cellpadding='0' cellspacing='0' border='0'><tr><td style='padding-right: 10px; padding-left: 10px; padding-top: 10px; padding-bottom: 10px; font-family: Arial, sans-serif'><![endif]-->
 <div style='color:#132F40;font-family:'Cabin', Arial, 'Helvetica Neue', Helvetica, sans-serif;line-height:120%;padding-top:10px;padding-right:10px;padding-bottom:10px;padding-left:10px;'>
 <div style='font-size: 12px; line-height: 14px; font-family: 'Cabin', Arial, 'Helvetica Neue', Helvetica, sans-serif; color: #132F40;'>
-<p style='font-size: 14px; line-height: 26px; margin: 0;'><span style='font-size: 22px;'>Hey, <strong>user</strong> ti ha inviato un file!</span></p>
+<p style='font-size: 14px; line-height: 26px; margin: 0;'><span style='font-size: 22px;'>Hey, <strong>$up_user</strong> ti ha inviato un file!</span></p>
 </div>
 </div>
 <!--[if mso]></td></tr></table><![endif]-->
@@ -483,7 +527,7 @@ $message = "
 </div>
 <!--[if mso]></td></tr></table><![endif]-->
 <div align='center' class='img-container center fixedwidth' style='padding-right: 0px;padding-left: 0px;'>
-<!--[if mso]><table width='100%' cellpadding='0' cellspacing='0' border='0'><tr style='line-height:0px'><td style='padding-right: 0px;padding-left: 0px;' align='center'><![endif]--><img align='center' alt='Image' border='0' class='center fixedwidth' src='images/illo.png' style='outline: none; text-decoration: none; -ms-interpolation-mode: bicubic; clear: both; border: 0; height: auto; float: none; width: 100%; max-width: 530px; display: block;' title='Image' width='530'/>
+<!--[if mso]><table width='100%' cellpadding='0' cellspacing='0' border='0'><tr style='line-height:0px'><td style='padding-right: 0px;padding-left: 0px;' align='center'><![endif]--><img align='center' alt='Image' border='0' class='center fixedwidth' src='https://sebastianoriva.altervista.org/musicshare/images/illo.png' style='outline: none; text-decoration: none; -ms-interpolation-mode: bicubic; clear: both; border: 0; height: auto; float: none; width: 100%; max-width: 530px; display: block;' title='Image' width='530'/>
 <!--[if mso]></td></tr></table><![endif]-->
 </div>
 <!--[if (!mso)&(!IE)]><!-->
@@ -496,10 +540,10 @@ $message = "
 </div>
 </div>
 </div>
-<div style='background-image:url('images/bg_password.gif');background-position:top center;background-repeat:no-repeat;background-color:transparent;'>
+<div style='background-image:url('https://sebastianoriva.altervista.org/musicshare/images/bg_password.gif');background-position:top center;background-repeat:no-repeat;background-color:transparent;'>
 <div class='block-grid no-stack' style='Margin: 0 auto; min-width: 320px; max-width: 600px; overflow-wrap: break-word; word-wrap: break-word; word-break: break-word; background-color: transparent;;'>
 <div style='border-collapse: collapse;display: table;width: 100%;background-color:transparent;'>
-<!--[if (mso)|(IE)]><table width='100%' cellpadding='0' cellspacing='0' border='0' style='background-image:url('images/bg_password.gif');background-position:top center;background-repeat:no-repeat;background-color:transparent;'><tr><td align='center'><table cellpadding='0' cellspacing='0' border='0' style='width:600px'><tr class='layout-full-width' style='background-color:transparent'><![endif]-->
+<!--[if (mso)|(IE)]><table width='100%' cellpadding='0' cellspacing='0' border='0' style='background-image:url('https://sebastianoriva.altervista.org/musicshare/images/bg_password.gif');background-position:top center;background-repeat:no-repeat;background-color:transparent;'><tr><td align='center'><table cellpadding='0' cellspacing='0' border='0' style='width:600px'><tr class='layout-full-width' style='background-color:transparent'><![endif]-->
 <!--[if (mso)|(IE)]><td align='center' width='600' style='background-color:transparent;width:600px; border-top: 0px solid transparent; border-left: 0px solid transparent; border-bottom: 0px solid transparent; border-right: 0px solid transparent;' valign='top'><table width='100%' cellpadding='0' cellspacing='0' border='0'><tr><td style='padding-right: 35px; padding-left: 35px; padding-top:15px; padding-bottom:2px;'><![endif]-->
 <div class='col num12' style='min-width: 320px; max-width: 600px; display: table-cell; vertical-align: top;;'>
 <div style='width:100% !important;'>
@@ -515,9 +559,8 @@ $message = "
 <!--[if mso]></td></tr></table><![endif]-->
 <div align='left' class='button-container' style='padding-top:5px;padding-right:10px;padding-bottom:35px;padding-left:10px;'>
 <!--[if mso]><table width='100%' cellpadding='0' cellspacing='0' border='0' style='border-spacing: 0; border-collapse: collapse; mso-table-lspace:0pt; mso-table-rspace:0pt;'><tr><td style='padding-top: 5px; padding-right: 10px; padding-bottom: 35px; padding-left: 10px' align='left'><v:roundrect xmlns:v='urn:schemas-microsoft-com:vml' xmlns:w='urn:schemas-microsoft-com:office:word' href='' style='height:31.5pt; width:150.75pt; v-text-anchor:middle;' arcsize='120%' stroke='false' fillcolor='#FFD500'><w:anchorlock/><v:textbox inset='0,0,0,0'><center style='color:#132F40; font-family:Arial, sans-serif; font-size:15px'><![endif]-->
-<div style='text-decoration:none;display:inline-block;color:#132F40;background-color:#FFD500;border-radius:50px;-webkit-border-radius:50px;-moz-border-radius:50px;width:auto; width:auto;;border-top:1px solid #FFD500;border-right:1px solid #FFD500;border-bottom:1px solid #FFD500;border-left:1px solid #FFD500;padding-top:5px;padding-bottom:5px;font-family:'Cabin', Arial, 'Helvetica Neue', Helvetica, sans-serif;text-align:center;mso-border-alt:none;word-break:keep-all;'><span style='padding-left:20px;padding-right:20px;font-size:15px;display:inline-block;'>
-<span style='font-size: 16px; line-height: 32px;'><span style='font-size: 15px; line-height: 30px;'><strong><span style='line-height: 30px; font-size: 15px;'>SCARICA IL MIO FILE</span></strong></span></span>
-</span></div>
+<div style='text-decoration:none;display:inline-block;color:#132F40;background-color:#FFD500;border-radius:50px;-webkit-border-radius:50px;-moz-border-radius:50px;width:auto; width:auto;;border-top:1px solid #FFD500;border-right:1px solid #FFD500;border-bottom:1px solid #FFD500;border-left:1px solid #FFD500;padding-top:5px;padding-bottom:5px;font-family:'Cabin', Arial, 'Helvetica Neue', Helvetica, sans-serif;text-align:center;mso-border-alt:none;word-break:keep-all;'>$button
+</div>
 <!--[if mso]></center></v:textbox></v:roundrect></td></tr></table><![endif]-->
 </div>
 <!--[if (!mso)&(!IE)]><!-->
@@ -567,9 +610,9 @@ $message = "
 <table activate='activate' align='right' alignment='alignment' cellpadding='0' cellspacing='0' class='social_table' role='presentation' style='table-layout: fixed; vertical-align: top; border-spacing: 0; border-collapse: undefined; mso-table-tspace: 0; mso-table-rspace: 0; mso-table-bspace: 0; mso-table-lspace: 0;' to='to' valign='top'>
 <tbody>
 <tr align='right' style='vertical-align: top; display: inline-block; text-align: right;' valign='top'>
-<td style='word-break: break-word; vertical-align: top; padding-bottom: 5px; padding-right: 0px; padding-left: 10px; border-collapse: collapse;' valign='top'><a href='https://www.facebook.com/Sebastiano-Riva-1611977855564821/' target='_blank'><img alt='Facebook' height='32' src='images/facebook@2x.png' style='outline: none; text-decoration: none; -ms-interpolation-mode: bicubic; clear: both; height: auto; float: none; border: none; display: block;' title='Facebook' width='32'/></a></td>
-<td style='word-break: break-word; vertical-align: top; padding-bottom: 5px; padding-right: 0px; padding-left: 10px; border-collapse: collapse;' valign='top'><a href='https://twitter.com/skebby11' target='_blank'><img alt='Twitter' height='32' src='images/twitter@2x.png' style='outline: none; text-decoration: none; -ms-interpolation-mode: bicubic; clear: both; height: auto; float: none; border: none; display: block;' title='Twitter' width='32'/></a></td>
-<td style='word-break: break-word; vertical-align: top; padding-bottom: 5px; padding-right: 0px; padding-left: 10px; border-collapse: collapse;' valign='top'><a href='https://instagram.com/skebbyy' target='_blank'><img alt='Instagram' height='32' src='images/instagram@2x.png' style='outline: none; text-decoration: none; -ms-interpolation-mode: bicubic; clear: both; height: auto; float: none; border: none; display: block;' title='Instagram' width='32'/></a></td>
+<td style='word-break: break-word; vertical-align: top; padding-bottom: 5px; padding-right: 0px; padding-left: 10px; border-collapse: collapse;' valign='top'><a href='https://www.facebook.com/Sebastiano-Riva-1611977855564821/' target='_blank'><img alt='Facebook' height='32' src='https://sebastianoriva.altervista.org/musicshare/images/facebook@2x.png' style='outline: none; text-decoration: none; -ms-interpolation-mode: bicubic; clear: both; height: auto; float: none; border: none; display: block;' title='Facebook' width='32'/></a></td>
+<td style='word-break: break-word; vertical-align: top; padding-bottom: 5px; padding-right: 0px; padding-left: 10px; border-collapse: collapse;' valign='top'><a href='https://twitter.com/skebby11' target='_blank'><img alt='Twitter' height='32' src='https://sebastianoriva.altervista.org/musicshare/images/twitter@2x.png' style='outline: none; text-decoration: none; -ms-interpolation-mode: bicubic; clear: both; height: auto; float: none; border: none; display: block;' title='Twitter' width='32'/></a></td>
+<td style='word-break: break-word; vertical-align: top; padding-bottom: 5px; padding-right: 0px; padding-left: 10px; border-collapse: collapse;' valign='top'><a href='https://instagram.com/skebbyy' target='_blank'><img alt='Instagram' height='32' src='https://sebastianoriva.altervista.org/musicshare/images/instagram@2x.png' style='outline: none; text-decoration: none; -ms-interpolation-mode: bicubic; clear: both; height: auto; float: none; border: none; display: block;' title='Instagram' width='32'/></a></td>
 </tr>
 </tbody>
 </table>
@@ -637,10 +680,13 @@ $headers = "MIME-Version: 1.0" . "\r\n";
 $headers .= "Content-type:text/html;charset=UTF-8" . "\r\n";
 
 // More headers
-$headers .= 'From: <musicshare@sebastianoriva.altervista.org>' . "\r\n";
+$headers .= 'From: <sebastianoriva@altervista.org>' . "\r\n";
 
 mail($to,$subject,$message,$headers);
 	
 }
+
+$_SESSION['success']  = "Ora puoi dire ai tuoi amici di controllare la loro inbox (e lo spam) !"; 
+header('location: home.php');
 
 ?>

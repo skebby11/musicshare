@@ -101,7 +101,7 @@ echo $query;
 	
 </div>
 <div class="credits">
-	<p>Creato da Sebastiano Riva</p>
+	<p>&copy <?php echo $year; ?> | Creato da <a href="https://www.sebastianoriva.it/" target="_blank" style="color: #FFFFFF">Sebastiano Riva</a></p>
 </div>
 </body>
 </html> 
